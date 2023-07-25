@@ -7,11 +7,3 @@ marvelApp
    https://developer.marvel.com/docs
 6- https://pub.dev/packages/http
 
-<html>
- <head>
-  <title>Utilizando a tag <br /> para quebra de linha.</title>
- </head>
- <body>
-  Utilizando a tag <br /> para quebra de linha.
- </body>
-</html>
