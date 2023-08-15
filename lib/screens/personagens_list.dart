@@ -11,8 +11,10 @@ class PersagensList extends StatefulWidget {
 }
 
 class _PersagensListState extends State<PersagensList> {
+  // Criando uma instância da classe PersonagemApi para fazer chamadas à API
   PersonagemApi api = PersonagemApi();
 
+  // Função para navegar para a tela de detalhes do personagem
   navegarDetalhesPersonagem(Personagem personagem) {
     Navigator.push(
       context,
@@ -27,15 +29,20 @@ class _PersagensListState extends State<PersagensList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Definindo a barra superior da tela
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Listagem de Personagens'),
       ),
+      // Definindo o corpo da tela
       body: FutureBuilder<List<Personagem>>(
+          // Chamando a função da API para obter a lista de personagens no futuro
           future: api.getPersonagens(),
           builder: (context, snapshot) {
             final data = snapshot.data;
+            // Verificando se os dados da API foram recebidos com sucesso
             if (snapshot.hasData) {
+              // Construindo uma grade (grid) de personagens
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -43,10 +50,12 @@ class _PersagensListState extends State<PersagensList> {
                   mainAxisSpacing: 10.0,
                 ),
                 itemCount: data!.length,
+                // Construindo os cards para cada personagem
                 itemBuilder: (context, index) {
                   return Card(
                     child: Column(
                       children: [
+                        // Exibindo a imagem do personagem
                         Image.network(
                           snapshot.data![index].avatar,
                           height: 120,
@@ -55,8 +64,10 @@ class _PersagensListState extends State<PersagensList> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
+                          // Adicionando um botão de texto com o nome do personagem
                           child: TextButton(
                               onPressed: () {
+                                // Navegando para a tela de detalhes do personagem
                                 navegarDetalhesPersonagem(
                                     snapshot.data![index]);
                               },
@@ -71,6 +82,7 @@ class _PersagensListState extends State<PersagensList> {
                 },
               );
             } else {
+              // Exibindo um indicador de carregamento enquanto os dados da API são buscados
               return const Center(
                 child: CircularProgressIndicator(),
               );

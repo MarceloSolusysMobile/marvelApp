@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-
 import '../model/personagem.dart';
-
+// Classe que representa a tela de detalhes de um personagem
 class DetalhesPersonagem extends StatefulWidget {
-  final Personagem personagem;
-  const DetalhesPersonagem({super.key, required this.personagem});
-
+  final Personagem personagem;  // O personagem a ser exibido
+  const DetalhesPersonagem({super.key, required this.personagem});  
   @override
   State<DetalhesPersonagem> createState() => _DetalhesPersonagemState();
 }
-
 class _DetalhesPersonagemState extends State<DetalhesPersonagem> {
   @override
   Widget build(BuildContext context) {
@@ -22,6 +19,7 @@ class _DetalhesPersonagemState extends State<DetalhesPersonagem> {
           Card(
             child: Column(
               children: [
+                // Exibindo a imagem do personagem
                 Image.network(
                   widget.personagem.avatar,
                   width: double.infinity,
@@ -29,6 +27,7 @@ class _DetalhesPersonagemState extends State<DetalhesPersonagem> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
+                  // Exibindo o nome do personagem
                   child: Text(
                     widget.personagem.name,
                     style: const TextStyle(fontSize: 16),
